@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blogger</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo">
+                <h1>My Blogger</h1>
+            </div>
+            <div class="auth-section">
+                <button id="loginBtn" class="btn">Login with GitHub</button>
+                <div id="userInfo" class="user-info hidden">
+                    <img id="userAvatar" src="" alt="User Avatar">
+                    <span id="userName"></span>
+                    <button id="logoutBtn" class="btn">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Developer Access Token Modal -->
+            <div id="tokenModal" class="modal hidden">
+                <div class="modal-content">
+                    <h2>Developer Access</h2>
+                    <p>Please enter your GitHub access token to verify developer access:</p>
+                    <input type="password" id="accessToken" placeholder="Enter GitHub Access Token">
+                    <button id="verifyToken" class="btn">Verify</button>
+                    <button id="closeModal" class="btn">Close</button>
+                </div>
+            </div>
+
+            <!-- Blog List Section -->
+            <section class="blog-list">
+                <div class="section-header">
+                    <h2>Blog Posts</h2>
+                    <div id="developerControls" class="developer-controls hidden">
+                        <button id="createFolderBtn" class="btn">Create New Blog</button>
+                        <button id="uploadFilesBtn" class="btn">Upload Files</button>
+                    </div>
+                </div>
+                <div id="blogGrid" class="blog-grid">
+                    <!-- Blog posts will be dynamically inserted here -->
+                </div>
+            </section>
+
+            <!-- Upload Modal -->
+            <div id="uploadModal" class="modal hidden">
+                <div class="modal-content">
+                    <h2>Upload Files</h2>
+                    <div id="dropZone" class="drop-zone">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag and drop files here</p>
+                        <p>or</p>
+                        <input type="file" id="fileInput" multiple>
+                        <button class="btn">Select Files</button>
+                    </div>
+                    <div id="uploadProgress" class="upload-progress hidden">
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <p class="progress-text">Uploading...</p>
+                    </div>
+                    <button id="closeUploadModal" class="btn">Close</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 My Blogger. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/octokit@2.0.0/dist/umd/octokit.min.js"></script>
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+    <script src="github-api.js"></script>
+    <script src="file-manager.js"></script>
+    <script src="app.js"></script>
+</body>
+</html> 

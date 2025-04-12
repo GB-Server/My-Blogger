@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authenticating - My Blogger</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="auth-callback">
+        <h2>Authenticating...</h2>
+        <div class="loader"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/octokit@2.0.0/dist/umd/octokit.min.js"></script>
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        // Handle the OAuth callback
+        window.addEventListener('load', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            
+            if (code) {
+                try {
+                    await window.authHandler.handleCallback(code);
+                    window.location.href = '/';
+                } catch (error) {
+                    console.error('Authentication error:', error);
+                    window.location.href = '/?error=auth_failed';
+                }
+            } else {
+                window.location.href = '/?error=no_code';
+            }
+        });
+    </script>
+</body>
+</html> 
